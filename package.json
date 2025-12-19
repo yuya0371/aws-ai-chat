@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint":"eslint . --ext .ts,.tsx",
     "lint:fix":"eslint . --ext .ts,.tsx --fix",
-    "format":"prettier --write .",
+    "format":"prettier --write ."
   },
   "dependencies": {
     "react": "^19.1.0",
