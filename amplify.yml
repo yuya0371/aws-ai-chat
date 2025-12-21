@@ -1,0 +1,22 @@
+# amplify.yml
+version: 1
+applications:
+  - backend:
+      phases:
+        build:
+          commands:
+            - npm install
+            - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-ip $AWS_APP_ID
+
+    frontend:
+      phases:
+        build:
+          commands:
+           - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '/*'
+      cache:
+        paths:
+          - .npm//*
