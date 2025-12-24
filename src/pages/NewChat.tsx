@@ -1,10 +1,34 @@
 import ChatInput from "../components/ui/ChatInput.tsx";
 import { useNavigate } from "react-router";
+import { sampleConversations } from "../sampleData.ts";
+import { createChatTitle } from "../utils.ts";
 
 export default function NewChat() {
   const navigate = useNavigate();
   const sendMessage = (message: string, model: string) => {
     const conversationId = self.crypto.randomUUID();
+
+    sampleConversations.push({
+      id: conversationId,
+      title: createChatTitle(message),
+      messages: [
+        {
+          id: "message-${self.crypto.randomUUID()}",
+          role: "user",
+          content: message,
+          timestamp: new Date(),
+        },
+        {
+          id: "message-${self.crypto.randomUUID()}",
+          role: "assistant",
+          content: "これはサンプルの応答です。",
+          timestamp: new Date(),
+        },
+      ],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
     navigate(`/chat/${conversationId}`, {
       state: {
         message,
